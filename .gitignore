@@ -1,0 +1,54 @@
+# Anchor/Solana specific
+.anchor
+.DS_Store
+target
+**/*.rs.bk
+node_modules
+test-ledger
+.yarn
+dump/
+
+# Audit working files (private)
+progress.txt
+Final_Audit_Report.md
+findings.md
+info.md
+validation_log.md
+info_validation_log.md
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+Thumbs.db
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+.cache/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build artifacts
+dist/
+build/
+out/
+
+# Package manager files
+package-lock.json
+yarn.lock
+Cargo.lock

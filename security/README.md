@@ -8,12 +8,11 @@ This directory contains security-related documentation and proof-of-concept expl
 security/
 ├── README.md                    # This file
 ├── proof-of-concepts/          # PoC exploit code
-│   ├── poc_1.rs                # VULN-01-H: Arithmetic Error PoC
 │   ├── poc_3.rs                # VULN-02-M: Input Validation PoC
-│   ├── poc_4.rs                # VULN-03-M: Duplicate Player PoC
-│   ├── poc_6.rs                # VULN-04-M: Unlimited Spawns PoC
-│   ├── poc_7.rs                # VULN-05-M: Refund State PoC
-│   └── poc_8.rs                # Additional security test
+│   ├── poc_4.rs                # VULN-01-H: Arithmetic Error PoC
+│   ├── poc_6.rs                # VULN-03-M: Duplicate Player PoC
+│   ├── poc_7.rs                # VULN-04-M: Unlimited Spawns PoC
+│   └── poc_8.rs                # VULN-05-M: Refund State PoC
 └── Audit_Report.md             # Public security audit report
 ```
 
@@ -37,12 +36,11 @@ security/
 
 Each PoC file demonstrates a specific vulnerability:
 
-- **poc_1.rs**: Demonstrates the critical arithmetic error in earnings distribution
-- **poc_3.rs**: Shows how zero-bet spam attacks work
-- **poc_4.rs**: Proves duplicate player vulnerability
-- **poc_6.rs**: Exploits unlimited spawn purchases
-- **poc_7.rs**: Demonstrates refund state validation bypass
-- **poc_8.rs**: Additional edge case testing
+- **poc_3.rs**: Shows how zero-bet spam attacks work (VULN-02-M)
+- **poc_4.rs**: Demonstrates the critical arithmetic error in earnings distribution (VULN-01-H)
+- **poc_6.rs**: Proves duplicate player vulnerability (VULN-03-M)
+- **poc_7.rs**: Exploits unlimited spawn purchases (VULN-04-M)
+- **poc_8.rs**: Demonstrates refund state validation bypass (VULN-05-M)
 
 ### Running PoCs
 
@@ -50,7 +48,7 @@ Each PoC file demonstrates a specific vulnerability:
 
 ```bash
 # Run individual PoC (example)
-cargo test --test poc_1 -- --nocapture
+cargo test --test poc_4 -- --nocapture
 
 # Run all security tests
 cargo test --tests -- --nocapture

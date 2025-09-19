@@ -99,7 +99,7 @@ let earnings = (kills + spawns) as u64 * session_bet / 10;
 
 #### 🧪 Proof of Concept
 
-**📁 PoC Location:** [`tests/test_arithmetic_vulnerability.rs`](../tests/test_arithmetic_vulnerability.rs)
+**📁 PoC Location:** [`security/proof-of-concepts/poc_4.rs`](proof-of-concepts/poc_4.rs)
 
 ```rust
 #[test]
@@ -151,7 +151,7 @@ fn test_earnings_theft_vulnerability() {
 
 Zero bet amounts and unlimited maximums enable spam attacks and break game economics.
 
-**📁 PoC Location:** [`tests/test_input_validation.rs`](../tests/test_input_validation.rs)
+**📁 PoC Location:** [`security/proof-of-concepts/poc_3.rs`](proof-of-concepts/poc_3.rs)
 
 ```rust
 #[test]
@@ -185,7 +185,7 @@ require!(bet_amount <= MAX_BET_AMOUNT, WagerError::BetTooHigh);
 
 Players can join both teams simultaneously, guaranteeing wins by controlling both sides.
 
-**📁 PoC Location:** [`tests/test_duplicate_players.rs`](../tests/test_duplicate_players.rs)
+**📁 PoC Location:** [`security/proof-of-concepts/poc_6.rs`](proof-of-concepts/poc_6.rs)
 
 ```rust
 #[test]
@@ -223,7 +223,7 @@ fn test_player_controls_both_teams() {
 
 Unlimited spawn purchases create extreme pay-to-win scenarios.
 
-**📁 PoC Location:** [`tests/test_unlimited_spawns.rs`](../tests/test_unlimited_spawns.rs)
+**📁 PoC Location:** [`security/proof-of-concepts/poc_7.rs`](proof-of-concepts/poc_7.rs)
 
 ```rust
 #[test]  
@@ -265,7 +265,7 @@ fn test_unlimited_spawn_advantage() {
 
 Completed games can be refunded, enabling double-spending attacks.
 
-**📁 PoC Location:** [`tests/test_refund_exploit.rs`](../tests/test_refund_exploit.rs)
+**📁 PoC Location:** [`security/proof-of-concepts/poc_8.rs`](proof-of-concepts/poc_8.rs)
 
 ```rust
 #[test]

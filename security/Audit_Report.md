@@ -42,12 +42,12 @@ This security audit examined the wagering protocol's Rust smart contracts deploy
 
 ### 📁 Files Audited
 
-- [`create_game_session.rs`](programs/wager-program/src/instructions/create_game_session.rs)
-- [`join_user.rs`](programs/wager-program/src/instructions/join_user.rs)
-- [`pay_to_spawn.rs`](programs/wager-program/src/instructions/pay_to_spawn.rs)
-- [`distribute_winnings.rs`](programs/wager-program/src/instructions/distribute_winnings.rs)
-- [`refund_wager.rs`](programs/wager-program/src/instructions/refund_wager.rs)
-- [`state.rs`](programs/wager-program/src/state.rs)
+- [`create_game_session.rs`](../programs/wager-program/src/instructions/create_game_session.rs)
+- [`join_user.rs`](../programs/wager-program/src/instructions/join_user.rs)
+- [`pay_to_spawn.rs`](../programs/wager-program/src/instructions/pay_to_spawn.rs)
+- [`distribute_winnings.rs`](../programs/wager-program/src/instructions/distribute_winnings.rs)
+- [`refund_wager.rs`](../programs/wager-program/src/instructions/refund_wager.rs)
+- [`state.rs`](../programs/wager-program/src/state.rs)
 
 ### 🧪 Testing Approach
 
@@ -82,7 +82,7 @@ pie title Vulnerability Distribution
 
 ### [VULN-01-H] Critical Arithmetic Error in Earnings Distribution
 
-**📍 Location:** [`distribute_winnings.rs:42`](programs/wager-program/src/instructions/distribute_winnings.rs#L42)  
+**📍 Location:** [`distribute_winnings.rs:42`](../programs/wager-program/src/instructions/distribute_winnings.rs#L42)  
 **🎯 Function:** `distribute_pay_spawn_earnings()`  
 **⚡ Status:** ✅ **CONFIRMED WITH POC**
 
@@ -99,7 +99,7 @@ let earnings = (kills + spawns) as u64 * session_bet / 10;
 
 #### 🧪 Proof of Concept
 
-**📁 PoC Location:** [`tests/test_arithmetic_vulnerability.rs`](tests/test_arithmetic_vulnerability.rs)
+**📁 PoC Location:** [`tests/test_arithmetic_vulnerability.rs`](../tests/test_arithmetic_vulnerability.rs)
 
 ```rust
 #[test]
@@ -143,7 +143,7 @@ fn test_earnings_theft_vulnerability() {
 
 ### [VULN-02-M] No Input Validation for Bet Amount
 
-**📍 Location:** [`create_game_session.rs:28`](programs/wager-program/src/instructions/create_game_session.rs#L28)  
+**📍 Location:** [`create_game_session.rs:28`](../programs/wager-program/src/instructions/create_game_session.rs#L28)  
 **🎯 Function:** `create_game_session_handler()`  
 **⚡ Status:** ✅ **CONFIRMED WITH POC**
 
@@ -151,7 +151,7 @@ fn test_earnings_theft_vulnerability() {
 
 Zero bet amounts and unlimited maximums enable spam attacks and break game economics.
 
-**📁 PoC Location:** [`tests/test_input_validation.rs`](tests/test_input_validation.rs)
+**📁 PoC Location:** [`tests/test_input_validation.rs`](../tests/test_input_validation.rs)
 
 ```rust
 #[test]
@@ -177,7 +177,7 @@ require!(bet_amount <= MAX_BET_AMOUNT, WagerError::BetTooHigh);
 
 ### [VULN-03-M] No Duplicate Player Check
 
-**📍 Location:** [`join_user.rs:35`](programs/wager-program/src/instructions/join_user.rs#L35)  
+**📍 Location:** [`join_user.rs:35`](../programs/wager-program/src/instructions/join_user.rs#L35)  
 **🎯 Function:** `join_user_handler()`  
 **⚡ Status:** ✅ **CONFIRMED WITH POC**
 
@@ -185,7 +185,7 @@ require!(bet_amount <= MAX_BET_AMOUNT, WagerError::BetTooHigh);
 
 Players can join both teams simultaneously, guaranteeing wins by controlling both sides.
 
-**📁 PoC Location:** [`tests/test_duplicate_players.rs`](tests/test_duplicate_players.rs)
+**📁 PoC Location:** [`tests/test_duplicate_players.rs`](../tests/test_duplicate_players.rs)
 
 ```rust
 #[test]
@@ -215,7 +215,7 @@ fn test_player_controls_both_teams() {
 
 ### [VULN-04-M] No Spawn Purchase Limits
 
-**📍 Location:** [`pay_to_spawn.rs:22`](programs/wager-program/src/instructions/pay_to_spawn.rs#L22)  
+**📍 Location:** [`pay_to_spawn.rs:22`](../programs/wager-program/src/instructions/pay_to_spawn.rs#L22)  
 **🎯 Function:** `pay_to_spawn_handler()`  
 **⚡ Status:** ✅ **CONFIRMED WITH POC**
 
@@ -223,7 +223,7 @@ fn test_player_controls_both_teams() {
 
 Unlimited spawn purchases create extreme pay-to-win scenarios.
 
-**📁 PoC Location:** [`tests/test_unlimited_spawns.rs`](tests/test_unlimited_spawns.rs)
+**📁 PoC Location:** [`tests/test_unlimited_spawns.rs`](../tests/test_unlimited_spawns.rs)
 
 ```rust
 #[test]  
@@ -257,7 +257,7 @@ fn test_unlimited_spawn_advantage() {
 
 ### [VULN-05-M] No Game State Validation in Refunds
 
-**📍 Location:** [`refund_wager.rs:18`](programs/wager-program/src/instructions/refund_wager.rs#L18)  
+**📍 Location:** [`refund_wager.rs:18`](../programs/wager-program/src/instructions/refund_wager.rs#L18)  
 **🎯 Function:** `refund_wager_handler()`  
 **⚡ Status:** ✅ **CONFIRMED WITH POC**
 
@@ -265,7 +265,7 @@ fn test_unlimited_spawn_advantage() {
 
 Completed games can be refunded, enabling double-spending attacks.
 
-**📁 PoC Location:** [`tests/test_refund_exploit.rs`](tests/test_refund_exploit.rs)
+**📁 PoC Location:** [`tests/test_refund_exploit.rs`](../tests/test_refund_exploit.rs)
 
 ```rust
 #[test]
@@ -298,7 +298,7 @@ fn test_post_game_refund_exploit() {
 
 ### [INFO-01] Missing Documentation for Public Functions
 
-**📍 Locations:** [`state.rs:105, 114, 120, 139, 154, 184`](programs/wager-program/src/state.rs)
+**📍 Locations:** [`state.rs:105, 114, 120, 139, 154, 184`](../programs/wager-program/src/state.rs)
 
 Several public API functions lack documentation:
 
@@ -318,7 +318,7 @@ pub fn get_all_players(&self) -> Vec<Pubkey> {
 
 ### [INFO-02] Redundant Type Annotations
 
-**📍 Locations:** [`state.rs:144, 147`](programs/wager-program/src/state.rs#L144)
+**📍 Locations:** [`state.rs:144, 147`](../programs/wager-program/src/state.rs#L144)
 
 ```rust
 // 🚨 Redundant casts - both operands already u16
